@@ -43,7 +43,7 @@ Il componente "SpaceMouse" deve:
 **Caso 1:** Dispositivo non collegato.
 
 * **Input:** Nessun dispositivo collegato.
-* **Output atteso:** Notifica di errore "Device not found".
+* **Output atteso:** Notifica di errore "**Device not found**".
 
 **Caso 2:** Dispositivo non supportato.
 
