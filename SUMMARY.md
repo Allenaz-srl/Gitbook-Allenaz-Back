@@ -42,11 +42,11 @@
 
 ## Taratura-sprint
 
-* [Requirements](taratura-sprint/requirements/README.md)
-  * [Test](taratura-sprint/requirements/test.md)
-* [Planning](taratura-sprint/planning.md)
-* [Verification](taratura-sprint/verification.md)
-* [Testing](taratura-sprint/testing.md)
+* [Requirements](sprint-32/requirements/README.md)
+  * [Test](sprint-32/requirements/test.md)
+* [Planning](sprint-32/planning.md)
+* [Verification](sprint-32/verification.md)
+* [Testing](sprint-32/testing.md)
 
 ## Log\_Viewer(NAS\_QNAP)
 

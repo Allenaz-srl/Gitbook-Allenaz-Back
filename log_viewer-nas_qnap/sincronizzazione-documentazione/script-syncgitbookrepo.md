@@ -89,15 +89,62 @@ REPOSITORIES.forEach(({ name, github }) => {
 
 Ogni repository viene clonato in una sottocartella del path
 
+### 3. Rimozione di cartelle `.git` interne:
 
+```javascript
+removeInnerGitFolders(TEMP_DIR_BASE);
+```
 
+Rimuove i riferimenti Git dai repository secondari per unire tutto sotto un singolo controllo di versione.
 
+### 4. Inizializzazione del repository Gitea (se necessario):
 
+```javascript
+runCommand("git init", TEMP_DIR_BASE);
+runCommand("git checkout -b main", TEMP_DIR_BASE);
+```
 
+Se non esiste gia <kbd>.git</kbd>, viene inizializzato un nuovo repo locale.
 
+### 5. Commit dei contenuti:
 
+```javascript
+runCommand("git add .", TEMP_DIR_BASE);
+runCommand(`git commit -m "🧾 Sync from all GitBook sources"`, TEMP_DIR_BASE);
+```
 
+Tutti i file vengono indicizzati e committati con un messaggio coerente.
 
+### 6. Aggiunta remota Gitea (una tantum):
 
+```javascript
+if (!remotes.includes("gitea")) {
+  runCommand(`git remote add gitea ${GITEA_REPO}`, TEMP_DIR_BASE);
+}
+```
 
+### 7. Push forzato al repository Gitea:
 
+```javascript
+runCommand("git push gitea main --force", TEMP_DIR_BASE);
+```
+
+il flag `--force` e necessario pioche ogni sincronizzazione sovrascrive lo stato precedente con quello piu aggiornato da GitHub
+
+## 🚀 Esecuzione come script indipendente
+
+```javascript
+if (require.main === module) {
+  syncAll();
+}
+```
+
+Questo clausola consente di eseguire direttamente lo script da terminale (`node syncGitbookRepo.js`), utile per test o sincronizzazione manuale.
+
+## 📦 Esportazione come modulo
+
+```javascript
+module.exports = { syncAll };
+```
+
+Permette di richiamare `syncAll()` da altri moduli, come nel backend Express (`app.js`)
