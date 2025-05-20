@@ -40,10 +40,16 @@
 * [AllyHotspot](allyhotspot/README.md)
   * [Configurazione l'Hotspot](allyhotspot/configurazione-lhotspot.md)
 
-## Sprint 32
+## Taratura-sprint
 
-* [Requirements](sprint-32/requirements/README.md)
-  * [Test](sprint-32/requirements/test.md)
-* [Planning](sprint-32/planning.md)
-* [Verification](sprint-32/verification.md)
-* [Testing](sprint-32/testing.md)
+* [Requirements](taratura-sprint/requirements/README.md)
+  * [Test](taratura-sprint/requirements/test.md)
+* [Planning](taratura-sprint/planning.md)
+* [Verification](taratura-sprint/verification.md)
+* [Testing](taratura-sprint/testing.md)
+
+## Log\_Viewer(NAS\_QNAP)
+
+* [Important](log_viewer-nas_qnap/important.md)
+* [Sincronizzazione documentazione](log_viewer-nas_qnap/sincronizzazione-documentazione/README.md)
+  * [Script syncGitbookRepo](log_viewer-nas_qnap/sincronizzazione-documentazione/script-syncgitbookrepo.md)
