@@ -53,3 +53,8 @@
 * [Important](log_viewer-nas_qnap/important.md)
 * [Sincronizzazione documentazione](log_viewer-nas_qnap/sincronizzazione-documentazione/README.md)
   * [Script syncGitbookRepo](log_viewer-nas_qnap/sincronizzazione-documentazione/script-syncgitbookrepo.md)
+  * [Integrazione nel Sistema (in app.js)](log_viewer-nas_qnap/sincronizzazione-documentazione/integrazione-nel-sistema-in-app.js.md)
+
+***
+
+* [Thumbnail](thumbnail.md)
