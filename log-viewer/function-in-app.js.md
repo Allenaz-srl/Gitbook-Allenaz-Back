@@ -131,11 +131,23 @@ for (i = 0; i < maxValueBD; i++) {
 }
 ```
 
-5.
+5. Append dei dati <kbd>float</kbd> alla fine della query
 
+```javascript
+query += ` , ${frequency_1}, ${frequency_2}, ..., ${g}`
+```
 
+### ❗ Controllo e gestione errori
 
+* Ogni valore <kbd>**NaN**</kbd> nei <kbd>float</kbd> viene sostituito con <kbd>0</kbd>.
+* Se `conn.query()` fallisce → l'errore viene propagato:
 
+```javascript
+throw err;
+```
 
+* La connessione viene chiusa:
 
-
+```javascript
+finally { if (conn) conn.end(); }
+```
