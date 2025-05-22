@@ -58,3 +58,6 @@
 ***
 
 * [Thumbnail](thumbnail.md)
+* [Log Viewer](log-viewer/README.md)
+  * [Function in app.js](log-viewer/function-in-app.js.md)
+* [Error DB](error-db.md)
