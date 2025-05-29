@@ -61,3 +61,7 @@
 * [Log Viewer](log-viewer/README.md)
   * [Function in app.js](log-viewer/function-in-app.js.md)
 * [Error DB](error-db.md)
+
+## Voice Command (VOSK+Python)
+
+* [Page 1](voice-command-vosk+python/page-1.md)
