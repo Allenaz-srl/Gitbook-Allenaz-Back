@@ -65,3 +65,7 @@
 ## Voice Command (VOSK+Python)
 
 * [Voice Command](voice-command-vosk+python/voice-command.md)
+
+***
+
+* [Voice Command (Code)](voice-command-code.md)
