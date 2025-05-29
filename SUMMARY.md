@@ -64,4 +64,4 @@
 
 ## Voice Command (VOSK+Python)
 
-* [Page 1](voice-command-vosk+python/page-1.md)
+* [Voice Command](voice-command-vosk+python/voice-command.md)
