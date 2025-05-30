@@ -26,7 +26,7 @@ Le frasi di attivazione **attivano temporaneamente la modalità di ascolto** per
 
 **Obbiettivo:** permettere movimenti guidati o precisi dell'esoscheletro.
 
-<table><thead><tr><th width="290.666748046875">Comando</th><th>Descrizione</th></tr></thead><tbody><tr><td><kbd>"alli sali"</kbd></td><td>Muove il braccio verso l'alto <strong>finche non riceve "ok"</strong></td></tr><tr><td><kbd>"alli scendi"</kbd></td><td>Muove il braccio verso il basso <strong>finche non riceve "ok"</strong></td></tr><tr><td><kbd>"alli su"</kbd></td><td>Movimento leggero verso l'alto, poi si ferma automaticamente</td></tr><tr><td><kbd>"alli giù"</kbd></td><td>Movimento leggero verso il basso, poi si ferma automaticamente</td></tr><tr><td><kbd>"ok"</kbd></td><td>Interrompe immediatamente i movimenti "sali" o "scendi"</td></tr></tbody></table>
+<table><thead><tr><th width="290.666748046875">Comando</th><th>Descrizione</th></tr></thead><tbody><tr><td><kbd>"alli sali"</kbd></td><td>Muove il braccio verso l'alto <strong>finche non riceve "ok"</strong></td></tr><tr><td><kbd>"alli scendi"</kbd></td><td>Muove il braccio verso il basso <strong>finche non riceve "ok"</strong></td></tr><tr><td><kbd>"alli su"</kbd></td><td>Movimento leggero verso l'alto, poi si ferma automaticamente</td></tr><tr><td><kbd>"alli giù"</kbd></td><td>Movimento leggero verso il basso, poi si ferma automaticamente</td></tr><tr><td><kbd>"ok"</kbd></td><td>Interrompe immediatamente i movimenti "sali" o "scendi", senza disattivare la possibilità di movimento</td></tr></tbody></table>
 
 ✅ Funzionano **solo in modalità attiva dopo&#x20;**_**"alli muovi"**_
 
@@ -56,7 +56,7 @@ Le frasi di attivazione **attivano temporaneamente la modalità di ascolto** per
 **Obbiettivo:** garantire la **massima sicurezza**.\
 I comandi sono **sempre attivi**, anche senza wake word, e permettono l'interruzione immediata di ogni movimento.
 
-<table><thead><tr><th width="289.5555419921875">Comando</th><th>Descrizione</th></tr></thead><tbody><tr><td><kbd>"aiuto"</kbd></td><td>Arresta immediatamente ogni movimento dell'esoscheletro</td></tr><tr><td><kbd>"stop"</kbd></td><td>Idem</td></tr><tr><td><kbd>"fermo"</kbd></td><td>Idem</td></tr><tr><td><kbd>"ferma"</kbd></td><td>Idem</td></tr><tr><td><kbd>"fermati"</kbd></td><td>Idem</td></tr><tr><td><kbd>"alt"</kbd></td><td>Idem</td></tr></tbody></table>
+<table><thead><tr><th width="289.5555419921875">Comando</th><th>Descrizione</th></tr></thead><tbody><tr><td><kbd>"aiuto"</kbd></td><td>Arresta immediatamente ogni movimento dell'esoscheletro, ed esce da tutte le modalità attive</td></tr><tr><td><kbd>"stop"</kbd></td><td>Idem</td></tr><tr><td><kbd>"fermo"</kbd></td><td>Idem</td></tr><tr><td><kbd>"ferma"</kbd></td><td>Idem</td></tr><tr><td><kbd>"fermati"</kbd></td><td>Idem</td></tr><tr><td><kbd>"alt"</kbd></td><td>Idem</td></tr></tbody></table>
 
 ⚠️ Questi comandi **non disattivano il sistema**, ma fermano qualsiasi azione in corso.\
 Sono pensati per situazioni in cui l'utente ha bisogno di **interrompere subito** il movimento.
