@@ -42,30 +42,25 @@
 
 ## Taratura-sprint
 
+* [Testing](sprint-32/testing.md)
+* [Verification](sprint-32/verification.md)
+* [Planning](sprint-32/planning.md)
 * [Requirements](sprint-32/requirements/README.md)
   * [Test](sprint-32/requirements/test.md)
-* [Planning](sprint-32/planning.md)
-* [Verification](sprint-32/verification.md)
-* [Testing](sprint-32/testing.md)
 
 ## Log\_Viewer(NAS\_QNAP)
 
-* [Important](log_viewer-nas_qnap/important.md)
 * [Sincronizzazione documentazione](log_viewer-nas_qnap/sincronizzazione-documentazione/README.md)
   * [Script syncGitbookRepo](log_viewer-nas_qnap/sincronizzazione-documentazione/script-syncgitbookrepo.md)
   * [Integrazione nel Sistema (in app.js)](log_viewer-nas_qnap/sincronizzazione-documentazione/integrazione-nel-sistema-in-app.js.md)
-
-***
-
-* [Thumbnail](thumbnail.md)
-* [Log Viewer](log-viewer/README.md)
-  * [Function in app.js](log-viewer/function-in-app.js.md)
-* [Error DB](error-db.md)
+* [Important](log_viewer-nas_qnap/important.md)
+* [Thumbnail](log_viewer-nas_qnap/thumbnail.md)
+* [Log Viewer](log_viewer-nas_qnap/log-viewer/README.md)
+  * [Function in app.js](log_viewer-nas_qnap/log-viewer/function-in-app.js.md)
+* [Error DB](log_viewer-nas_qnap/error-db.md)
 
 ## Voice Command (VOSK+Python)
 
 * [Voice Command](voice-command-vosk+python/voice-command.md)
-
-***
-
-* [Voice Command (Code)](voice-command-code.md)
+* [Voice Command (Code)](voice-command-vosk+python/voice-command-code.md)
+* [Comandi Vocali](voice-command-vosk+python/comandi-vocali.md)
