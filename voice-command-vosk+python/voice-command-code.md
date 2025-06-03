@@ -4,13 +4,13 @@
 
 ### 🧠 Obiettivo
 
-Il ciclo principale dello script ha il compito di:
+Il ciclo principale dello script Python è progettato per:
 
-1. Ascoltare costantemente il microfono in tempo reale
-2. Utilizzare il motore Vosk per riconoscere comandi vocali (da grammatica predefinita)
-3. Attivare e gestire la modalita **"wake word"**
-4. Riconoscere e inoltrare comandi vocali validi
-5. Riconoscere immediatamente i **comandi di emergenza** in qualsiasi momento
+* Ascoltare costantemente il microfono in tempo reale
+* Riconoscere comandi vocali tramite **Vosk**, con vocabolario limitato(predefinito)
+* Gestire **due modalità di attivazione vocale ("wake word")** con timer distinti
+* Eseguire comandi in base alla modalità attiva
+* Riconoscere e reagire **immediatamente** ai comandi di emergenza, indipendentemente dallo stato
 
 ### 🎧 Inizializzazione dell'ascolto
 
@@ -21,8 +21,8 @@ with sd.RawInputStream(samplerate=16000, blocksize=8000, dtype='int16',
 
 Questa linea apre uno stream audio continuo dal microfono, usando la libreria <kbd>**sounddevice**</kbd>**&#x20;.**
 
-* samplerate = 16000 Hz: richiesto dal modello Vosk
-* callback = calback: ogni blocco audio viene messo in una **`queue`** per elaborazione
+* Lo stream passa i dati audio grezzi a una **coda (`queue`)**
+* La **frequenza di campionamento (16kHz)** è compatibile con i modelli Vosk
 
 ### 📤 Struttura della callback audio
 
@@ -33,7 +33,7 @@ def callback(indata, frames, time_info, status):
     q.put(bytes(indata))
 ```
 
-* Lo stream è assincrono: ogni pezzo di audio viene convertito in bytes e inserito della coda.
+* Ogni blocco di dati audio viene **trasformato in bytes** e inserito nella coda `q`, per l’elaborazione da parte del motore vocale.
 
 ### 🗣️ Ciclo di ascolto vocale
 
@@ -42,46 +42,47 @@ while True:
     data = q.get()
 ```
 
-* Ogni iterazione del ciclo elabora uno spezzone audio (chunk).
+* Ogni iterazione estrae un blocco di dati audio e lo sottopone al riconoscimento vocale.
 
-### ⏰ Timeout della modalità comando
+### ⏰ Timeout della modalità attiva (Wake Word)
 
 ```python
-if wake_active and time.monotonic() > wake_timeout:
+if wake_mode and time.monotonic() > wake_timeout:
     print("😴 Wake mode timed out.")
-    wake_active = False
+    wake_mode = None
 ```
 
-* Quando il sistema entra in modalita **"wake word"**, ha 10 secondi (**`WAKE_DURATION`**) per accettare comandi vocali.
-* Dopo il timeout, si disattiva e attende un nuovo trigger ("ciao alli").
+* Se è attiva una modalità (`"main"` o `"movement"`), ma **non viene ricevuto alcun comando entro il tempo previsto**, il sistema torna inattivo
+* Il timeout è configurabile:
+  * `10s` per modalità "main"
+  * `30s` per modalità "movement"
 
 ### 🤖 Riconoscimento vocale con Vosk
 
 ```python
 if recognizer.AcceptWaveform(data):
     result = json.loads(recognizer.Result())
-    text = result.get("text", "").strip()
 else:
-    partial = json.loads(recognizer.PartialResult())
-    text = partial.get("partial", "").strip()
+    result = json.loads(recognizer.PartialResult())
+
+text = result.get("text", "").strip()
 ```
 
-* Se Vosk ha riconosciuto una frase completa, la estrae da **`Result()`**
-* Altrimenti, estrae parole parziali da **`PartialResult()`**
-* Tutti i risultati vengono convertiti in text (minuscolo, senza spazi)
+* Il motore Vosk restituisce una stringa testuale del comando riconosciuto
+* Il testo viene **pulito e normalizzato** per l'elaborazione
 
 ### 🚨 Comandi di emergenza (sempre attivi)
 
 ```python
-for cmd in ALWAYS_ON_COMMANDS:
+for cmd in COMMANDS_EMERGENCY:
     if text.startswith(cmd) and should_process(cmd):
         print("🛑 Emergency command detected:", cmd)
-        # Handle emergency command here
+        break
 ```
 
-* stop, fermati, alt, ecc. vengono gestiti immediatamente
-* Funzionano anche a sistema inattiva
-* Vengono filtrati per evitare ripetizioni ravvicinate tramite:
+* Questi comandi sono **sempre attivi**, indipendentemente dalla modalità
+* Esempi: `"stop"`, `"fermati"`, `"aiuto"`...
+* Usano il controllo anti-duplicazione:
 
 ```python
 def should_process(cmd):
@@ -89,40 +90,67 @@ def should_process(cmd):
         return False
 ```
 
-### 🟢 Wake Word
+### 🟢 Attivazione vocale (Wake Words)
 
 ```python
-if not wake_active:
-    for wake in WAKE_WORDS:
-        if text.startswith(wake):
-            wake_active = True
-            wake_timeout = time.monotonic() + WAKE_DURATION
-            print("🟢 Wake word detected:", wake)
+if not wake_mode:
+    if WAKE_WORD_MAIN in text:
+        wake_mode = "main"
+        reset_wake_timer(WAKE_DURATION_MAIN)
+        print("🟢 Wake word ciao alli detected.")
+    elif WAKE_WORD_MOVEMENT in text:
+        wake_mode = "movement"
+        reset_wake_timer(WAKE_DURATION_MOVEMENT)
+        print("🟡 Wake word alli muovi detected.")
 ```
 
-* Dopo il triger "ciao alli", il sistema accetta comandi vocali per 10 secondi
-* Il timer si resetta **ogni volta che un comando valido viene eseguito**
+<table><thead><tr><th width="156">Wake Word</th><th width="155">Modalità attiva</th><th width="100.3333740234375">Durata</th><th>Comandi disponibili</th></tr></thead><tbody><tr><td><kbd>"ciao alli"</kbd></td><td><kbd>main</kbd></td><td>10 sec</td><td><code>inizia movimento</code>, <code>reset errore</code>, <code>posizione ...</code></td></tr><tr><td><kbd>"alli muovi"</kbd></td><td><kbd>movement</kbd></td><td>30 sec</td><td><code>alli su</code>, <code>alli giu</code>, <code>ok</code>, ecc.</td></tr></tbody></table>
 
-### ✅ Comandi vocali (solo in modalità attiva)
+### 🧭 Comandi nella modalità `"main"`
 
 ```python
-if wake_active:
-    for cmd in COMMANDS:
-        if text.startswith(cmd) and should_process(cmd):
-            print("✅ Command detected:", cmd)
-            wake_timeout = time.monotonic() + WAKE_DURATION
-            # Handle command here
+pythonCopiaModificaif wake_mode == "main":
 ```
 
-* <kbd>"alli su"</kbd>, <kbd>"alli giu"</kbd>, ecc. vengono elaborati solo se wake word è attivo
-* Il timer viene esteso dopo ogni comando riconosciuto
+### **🟢 Comando Start**
+
+```python
+pythonCopiaModificaif text.startswith("inizia movimento"):
+    print("🚀 Start command")
+```
+
+### **♻️ Comando Reset**
+
+```python
+pythonCopiaModificaif text.startswith("reset errore"):
+    print("♻️ Reset command")
+```
+
+### **📌 Posizione salvata**
+
+```python
+pythonCopiaModificaif text.startswith("posizione"):
+    print("📌 Saved position command:", text)
+```
+
+***
+
+### 🤖 Comandi nella modalità `"movement"`
+
+```python
+pythonCopiaModificaif wake_mode == "movement":
+```
+
+I comandi validi sono:
+
+* `"alli su"` – movimento breve verso l’alto
+* `"alli giu"` – movimento breve verso il basso
+* `"alli sali"` – movimento continuo verso l’alto
+* `"alli scendi"` – movimento continuo verso il basso
+* `"ok"` – arresta movimenti continui
+
+Ogni comando **resetta il timer** a 30 secondi.
 
 ## 🧪 Voice Test
 
-| Scenario                                  | Atteso                                    |
-| ----------------------------------------- | ----------------------------------------- |
-| `"ciao alli"` + `"alli su"`               | ✅ Comando riconosciuto                    |
-| `"stop"` pronunciato in qualsiasi momento | 🛑 Comando di emergenza accettato         |
-| Nessun suono dopo "ciao alli" per 10 sec  | 😴 Timeout modalità comando               |
-| Dico due volte “stop” in 0.3s             | Secondo comando ignorato                  |
-| Rumore o comandi non definiti             | Nessuna azione viene eseguita (sicurezza) |
+<table><thead><tr><th width="224.888916015625">Scenario</th><th width="260.333251953125">Risultato</th><th width="83.5555419921875">Person</th><th width="102.4443359375">Data</th><th width="84.0001220703125" data-type="checkbox">Checked</th></tr></thead><tbody><tr><td>Nessun wake word → <code>"stop"</code></td><td>Comando d’emergenza accettato</td><td>Roman</td><td>30/05/25</td><td>true</td></tr><tr><td><code>"ciao alli"</code> → <code>"inizia movimento"</code></td><td>Modalità attiva + comando start</td><td>Roman</td><td>30/05/25</td><td>true</td></tr><tr><td><code>"ciao alli"</code> → silenzio per 10s</td><td>Timeout modalità</td><td>Roman</td><td>30/05/25</td><td>true</td></tr><tr><td><code>"alli muovi"</code> → <code>"alli su"</code> → <code>"ok"</code></td><td>Movimento + arresto</td><td>Roman</td><td>30/05/25</td><td>true</td></tr><tr><td><code>"alli muovi"</code> → silenzio per 30s</td><td>Timeout movimento</td><td>Roman</td><td>30/05/25</td><td>true</td></tr><tr><td><code>"ciao alli"</code> → <code>"reset errore"</code></td><td>Riavvio software</td><td>Roman</td><td>30/05/25</td><td>true</td></tr><tr><td><code>"alli muovi"</code> → <code>"posizione tavolo"</code></td><td>Ignorato (non supportato in questa modalità)</td><td>Roman</td><td>30/05/25</td><td>true</td></tr></tbody></table>
