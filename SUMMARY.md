@@ -30,15 +30,13 @@
 ## MOBILE APP (python)
 
 * [AllyArm Mobile App](mobile-app-python/allyarm-mobile-app.md)
-
-***
-
-* [BLE Server](ble-server.md)
-* [BLE Manager](ble-manager.md)
-* [WiFi Manager](wifi-manager.md)
-* [Message parser](message-parser.md)
-* [AllyHotspot](allyhotspot/README.md)
-  * [Configurazione l'Hotspot](allyhotspot/configurazione-lhotspot.md)
+* [Start](mobile-app-python/start.md)
+* [BLE Server](mobile-app-python/ble-server.md)
+* [BLE Manager](mobile-app-python/ble-manager.md)
+* [WiFi Manager](mobile-app-python/wifi-manager.md)
+* [Message parser](mobile-app-python/message-parser.md)
+* [AllyHotspot](mobile-app-python/allyhotspot/README.md)
+  * [Configurazione l'Hotspot](mobile-app-python/allyhotspot/configurazione-lhotspot.md)
 
 ## Taratura-sprint
 
