@@ -57,8 +57,9 @@
   * [Function in app.js](log_viewer-nas_qnap/log-viewer/function-in-app.js.md)
 * [Error DB](log_viewer-nas_qnap/error-db.md)
 
-## Voice Command (VOSK+Python)
+## Voice Command (VOSK+Python+Piper)
 
-* [Voice Command](voice-command-vosk+python/voice-command.md)
-* [Voice Command (Code)](voice-command-vosk+python/voice-command-code.md)
-* [Comandi Vocali](voice-command-vosk+python/comandi-vocali.md)
+* [Voice Command](voice-command-vosk+python+piper/voice-command.md)
+* [Voice Command (Code)](voice-command-vosk+python+piper/voice-command-code.md)
+* [Comandi Vocali](voice-command-vosk+python+piper/comandi-vocali.md)
+* [Errore Reader Voice (PIPER)](voice-command-vosk+python+piper/errore-reader-voice-piper.md)
