@@ -30,7 +30,7 @@
 ## MOBILE APP (python)
 
 * [AllyArm Mobile App](mobile-app-python/allyarm-mobile-app.md)
-* [Start](mobile-app-python/start.md)
+* [Start BLE](mobile-app-python/start-ble.md)
 * [BLE Server](mobile-app-python/ble-server.md)
 * [BLE Manager](mobile-app-python/ble-manager.md)
 * [WiFi Manager](mobile-app-python/wifi-manager.md)
@@ -59,6 +59,7 @@
 
 ## Voice Command (VOSK+Python+Piper)
 
+* [Start VCV](voice-command-vosk+python+piper/start-vcv.md)
 * [Voice Command](voice-command-vosk+python+piper/voice-command.md)
 * [Voice Command (Code)](voice-command-vosk+python+piper/voice-command-code.md)
 * [Comandi Vocali](voice-command-vosk+python+piper/comandi-vocali.md)
