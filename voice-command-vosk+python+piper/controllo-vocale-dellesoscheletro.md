@@ -41,19 +41,7 @@ Dopo **"ciao alli"**, puoi abilitare il joystick:
 
 ***
 
-### 🔁 **4. Comandi di Movimento**
-
-Dopo **"alli muovi"**, puoi muovere il braccio in modo guidato:
-
-* ⬆️ **📣 "alli sali"** → Il braccio si alza **continuamente** finché non dici **"ok"**
-* ⬇️ **📣 "alli scendi"** → Il braccio si abbassa **continuamente** finché non dici **"ok"**
-* 🔼 **📣 "alli su"** → Piccolo movimento verso l’alto, poi si ferma automaticamente
-* 🔽 **📣 "alli giù"** → Piccolo movimento verso il basso, poi si ferma automaticamente
-* 🛑 **📣 "ok"** → Ferma **immediatamente** i movimenti "sali" o "scendi", ma non disattiva la modalità
-
-***
-
-### 💾 **5. Posizioni Salvate (Preimpostate)**
+### 💾 **4. Posizioni Salvate (Preimpostate)**
 
 Dopo **"ciao alli"**, puoi richiamare posizioni salvate tramite l'app. Esempio:
 
@@ -64,7 +52,7 @@ Dopo **"ciao alli"**, puoi richiamare posizioni salvate tramite l'app. Esempio:
 
 ***
 
-### 🔄 **6. In caso di Errore – Riavvio del Sistema senza l'app**
+### 🔄 **5. In caso di Errore – Riavvio del Sistema senza l'app**
 
 Se si verifica un errore, l'esoscheletro **si blocca automaticamente per sicurezza.**\
 Durante questo stato, **non risponderà** più a nessun **comando di movimento**.\
@@ -78,13 +66,25 @@ Per riprendere il funzionamento, è necessario **risolvere il problema** e poi *
 
 ***
 
+### 🔁 **6. Comandi di Movimento**
+
+Dopo **"alli muovi"**, puoi muovere il braccio in modo guidato:
+
+* ⬆️ **📣 "alli sali"** → Il braccio si alza **continuamente** finché non dici **"ok"**
+* ⬇️ **📣 "alli scendi"** → Il braccio si abbassa **continuamente** finché non dici **"ok"**
+* 🔼 **📣 "alli su"** → Piccolo movimento verso l’alto, poi si ferma automaticamente
+* 🔽 **📣 "alli giù"** → Piccolo movimento verso il basso, poi si ferma automaticamente
+* 🛑 **📣 "basta"** → Ferma **immediatamente** i movimenti "sali" o "scendi", ma non disattiva la modalità
+
+***
+
 ### 📌 **Esempi di Uso (Combinazioni)**
 
 🧩 **Scenario 1 – Movimento Guidato**
 
 1. **"alli muovi"**
 2. **"alli sali"**
-3. **"ok"**
+3. **"basta"**
 
 🧩 **Scenario 2 – Posizione Preimpostata**
 
