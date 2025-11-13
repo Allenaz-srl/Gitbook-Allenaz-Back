@@ -89,7 +89,44 @@ sudo nano /etc/default/hostapd
 DAEMON_CONF="/etc/hostapd/hostapd.conf"
 ```
 
-5. 🧩**Creare lo script `start-hotspot.sh`**
+5. 🧩 Configurazione di **Netplan** (aggiunta importante ✅)
+
+Per permettere la gestione dinamica dell’IP e il corretto ripristino dopo la disattivazione dell’hotspot:
+
+```bash
+sudo nano /etc/netplan/50-cloud-init.yaml
+```
+
+Inserisci:
+
+```yaml
+network:
+  version: 2
+  renderer: NetworkManager
+  ethernets:
+    eth0:
+      dhcp4: true
+      optional: true
+  wifis:
+    wlan0:
+      access-points:
+        "Allenaz_Office":
+          password: "Allenaz2023"
+      dhcp4: true
+      optional: true
+```
+
+Applica la configurazione:
+
+```bash
+sudo netplan apply
+```
+
+{% hint style="info" %}
+⚠️ **Attenzione:** Se prima il Raspberry Pi utilizzava un indirizzo IP statico, dopo questa modifica l’indirizzo diventerà **dinamico (assegnato via DHCP)**. Assicurati di aggiornare eventuali configurazioni o servizi che dipendono da un IP fisso.
+{% endhint %}
+
+6. 🧩**Creare lo script `start-hotspot.sh`**
 
 ```bash
 sudo nano /usr/local/bin/start-hotspot.sh
@@ -126,7 +163,7 @@ sudo systemctl restart hostapd
 sudo chmod +x /usr/local/bin/start-hotspot.sh
 ```
 
-6. 🧩Creare lo script `stop-hotspot.sh`
+7. 🧩Creare lo script `stop-hotspot.sh`
 
 ```bash
 sudo nano /usr/local/bin/stop-hotspot.sh
@@ -186,11 +223,11 @@ subprocess.run(["sudo", "/usr/local/bin/stop-hotspot.sh"], check=True)
 * Verificare attivazione dell'hotspot:
 
 ```bash
-sudo nano "/usr/local/bin/start-hotspot.sh"
+sudo "/usr/local/bin/start-hotspot.sh"
 ```
 
 * Verificare disattivazione dell'hotspot:
 
 ```bash
-sudo nano "/usr/local/bin/stop-hotspot.sh"
+sudo "/usr/local/bin/stop-hotspot.sh"
 ```
