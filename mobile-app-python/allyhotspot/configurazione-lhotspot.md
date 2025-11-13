@@ -97,7 +97,7 @@ Per permettere la gestione dinamica dell’IP e il corretto ripristino dopo la d
 sudo nano /etc/netplan/50-cloud-init.yaml
 ```
 
-Inserisci:
+Inserisci (importante  dhcp4: true,  tutto resto come esempio per iniziare):
 
 ```yaml
 network:
