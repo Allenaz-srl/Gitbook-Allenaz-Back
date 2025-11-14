@@ -37,6 +37,7 @@
 * [Message parser](mobile-app-python/message-parser.md)
 * [AllyHotspot](mobile-app-python/allyhotspot/README.md)
   * [Configurazione l'Hotspot](mobile-app-python/allyhotspot/configurazione-lhotspot.md)
+  * [Configurazione MariaDB](mobile-app-python/allyhotspot/configurazione-mariadb.md)
 
 ## Taratura-sprint
 
