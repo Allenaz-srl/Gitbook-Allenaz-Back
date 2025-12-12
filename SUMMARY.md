@@ -66,3 +66,7 @@
 * [Comandi Vocali](voice-command-vosk+python+piper/comandi-vocali.md)
 * [Controllo Vocale dell’Esoscheletro](voice-command-vosk+python+piper/controllo-vocale-dellesoscheletro.md)
 * [Errore Reader Voice (PIPER)](voice-command-vosk+python+piper/errore-reader-voice-piper.md)
+
+## IMPORTANT
+
+* [Timers](important/timers.md)
