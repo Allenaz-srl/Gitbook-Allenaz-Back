@@ -1,17 +1,3 @@
----
-layout:
-  title:
-    visible: true
-  description:
-    visible: false
-  tableOfContents:
-    visible: true
-  outline:
-    visible: true
-  pagination:
-    visible: true
----
-
 # Exercises
 
 {% hint style="info" %}
@@ -329,11 +315,8 @@ Questa pagina contiene i requisiti e le prove per tutti i "routes" nella sezione
   3. Controllare la risposta e il comportamento del server.
 *   **Risultato atteso:** Il server restituisce uno stato HTTP 500 e il messaggio:
 
-    {% code fullWidth="false" %}
-    ```json
-    jsonCopia codice{ "message": "Error fetching exercise names" }
-    ```
-    {% endcode %}
+    <pre class="language-json" data-full-width="false"><code class="lang-json">jsonCopia codice{ "message": "Error fetching exercise names" }
+    </code></pre>
 
 **Test Case 4: Performance con dati di grandi dimensioni**
 
@@ -632,11 +615,8 @@ Questa pagina contiene i requisiti e le prove per tutti i "routes" nella sezione
    * `name`: Nome dell'esercizio di cui visualizzare le posizioni.
 3.  Estrarre dal database le posizioni associate al nome dell'esercizio specificato utilizzando la query:
 
-    {% code overflow="wrap" %}
-    ```sql
-    sqlCopia codiceSELECT * FROM exo_exercises.view_positions WHERE name LIKE "${name}"
-    ```
-    {% endcode %}
+    <pre class="language-sql" data-overflow="wrap"><code class="lang-sql">sqlCopia codiceSELECT * FROM exo_exercises.view_positions WHERE name LIKE "${name}"
+    </code></pre>
 4. Gestire correttamente la connessione al database:
    * Aprire e chiudere correttamente la connessione.
 5. Restituire una risposta JSON contenente il risultato della query.

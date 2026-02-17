@@ -23,10 +23,6 @@
 * [Libraries](back-end-nodejs/libraries.md)
 * [SOUP](back-end-nodejs/soup.md)
 
-***
-
-* [Taratura](taratura.md)
-
 ## MOBILE APP (python)
 
 * [AllyArm Mobile App](mobile-app-python/allyarm-mobile-app.md)
@@ -46,6 +42,7 @@
 * [Planning](sprint-32/planning.md)
 * [Requirements](sprint-32/requirements/README.md)
   * [Test](sprint-32/requirements/test.md)
+* [Taratura](taratura-sprint/taratura.md)
 
 ## Log\_Viewer(NAS\_QNAP)
 
@@ -70,3 +67,7 @@
 ## IMPORTANT
 
 * [Timers](important/timers.md)
+
+## POLIMI Utils (C code)
+
+* [Page 1](polimi-utils-c-code/page-1.md)
