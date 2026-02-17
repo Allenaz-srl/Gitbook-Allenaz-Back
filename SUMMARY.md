@@ -42,7 +42,7 @@
 * [Planning](sprint-32/planning.md)
 * [Requirements](sprint-32/requirements/README.md)
   * [Test](sprint-32/requirements/test.md)
-* [Taratura](taratura-sprint/taratura.md)
+* [Taratura](taratura.md)
 
 ## Log\_Viewer(NAS\_QNAP)
 
@@ -70,4 +70,4 @@
 
 ## POLIMI Utils (C code)
 
-* [Page 1](polimi-utils-c-code/page-1.md)
+* [Utils](polimi-utils-c-code/utils.md)
