@@ -70,4 +70,5 @@
 
 ## POLIMI Utils (C code)
 
-* [Utils](polimi-utils-c-code/utils.md)
+* [PARTE 1: INTRODUZIONE E ARCHITETTURA](polimi-utils-c-code/parte-1-introduzione-e-architettura.md)
+* [PARTE 2: API REFERENCE DETTAGLIATA](polimi-utils-c-code/parte-2-api-reference-dettagliata.md)
