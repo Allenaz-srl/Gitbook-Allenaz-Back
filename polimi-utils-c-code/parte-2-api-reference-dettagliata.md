@@ -318,3 +318,30 @@ sequenceDiagram
 
 * Address fisso: `10` (anziché 12-15)
 * Valore: indice enum master\_working\_mode\_enum
+
+### 4. SETTING TARGET
+
+#### `set_target2()` - Via SHM3 (Batch)
+
+**Scopo:** Invia target per **uno o più assi simultaneamente** usando SHM3 (migliore per comandi batch).
+
+**Parametri:**
+
+<table><thead><tr><th width="117.88885498046875">Parametro</th><th width="175">Tipo</th><th>Descrizione</th></tr></thead><tbody><tr><td>axis</td><td>int</td><td>Indice asse (0-3)</td></tr><tr><td>type</td><td>targets_type_enum</td><td>Tipo di target</td></tr><tr><td>value</td><td>float</td><td>Valore target</td></tr></tbody></table>
+
+**Enumerazione targets\_type\_enum:**
+
+<table><thead><tr><th width="91.44439697265625">Valore</th><th width="226.888916015625">Nome</th><th width="146.6666259765625">Unità</th><th>Descrizione</th></tr></thead><tbody><tr><td>0</td><td>NO_TARGET</td><td>-</td><td>Nessun target</td></tr><tr><td>1</td><td>TARGET_POSITION_DEG</td><td>gradi</td><td>Posizione in gradi</td></tr><tr><td>2</td><td>TARGET_POSITION_BIT</td><td>encoder counts</td><td>Posizione in bit encoder</td></tr><tr><td>3</td><td>TARGET_SPEED</td><td>rad/s</td><td>Velocità assoluta</td></tr><tr><td>4</td><td>TARGET_SPEED_PERCENT</td><td>%</td><td>Velocità in percentuale (±100)</td></tr><tr><td>5</td><td>TARGET_TORQUE</td><td>N·m</td><td>Coppia motore</td></tr></tbody></table>
+
+**Valori di ritorno:**
+
+<table><thead><tr><th width="91.77783203125">Valore</th><th>Significato</th></tr></thead><tbody><tr><td><code>0</code></td><td>✅ Target inviato correttamente</td></tr><tr><td><code>1</code></td><td>❌ Errore: parametri invalidi</td></tr></tbody></table>
+
+**Layout SHM3 (20 bytes):**
+
+| Asse | Type Offset | Value Offset | Bytes |
+| ---- | ----------- | ------------ | ----- |
+| 0    | 0           | 1-4          | 5     |
+| 1    | 5           | 6-9          | 5     |
+| 2    | 10          | 11-14        | 5     |
+| 3    | 15          | 16-19        | 5     |
